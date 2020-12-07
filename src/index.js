@@ -14,7 +14,10 @@ ulMenuRef.insertAdjacentHTML('beforeend', markup)
 // Cлушатели
 inputThemeSwitchRef.addEventListener('change', changeTheme)
 
-
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
 
 const tagListItem = document.querySelectorAll('.tag-list__item');
 tagListItem.forEach(el => {
@@ -27,19 +30,23 @@ tagListItem.forEach(el => {
 
 function changeTheme(e) {
     if (e.target.checked) {
+     
         // запысывае в локал тема черная
-        localStorage.setItem('theme', 'dark');
-        if (localStorage.getItem('theme') === 'dark') {
+        localStorage.setItem('Theme', JSON.stringify(Theme.DARK));
+        const getItemTheme = localStorage.getItem('Theme')
+        console.log(getItemTheme);
+
+        if (getItemTheme) {
             bodyRef.classList.add('dark-theme')
         }
         }
     else {
-        localStorage.removeItem('theme');
+        localStorage.removeItem('Theme');
         bodyRef.classList.remove('dark-theme')
     }
     
 }
-if (localStorage.getItem('theme')) {
+if (localStorage.getItem('Theme')) {
     bodyRef.classList.add('dark-theme')
     inputThemeSwitchRef.checked = true
 }
