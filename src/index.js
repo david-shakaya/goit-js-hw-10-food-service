@@ -19,6 +19,7 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
+//Возможно, есть лушее решение через Шаблонизатор-Усы
 const tagListItem = document.querySelectorAll('.tag-list__item');
 tagListItem.forEach(el => {
     if (el.textContent === '') {
@@ -26,12 +27,11 @@ tagListItem.forEach(el => {
     }
 })
 
-// 
 
 function changeTheme(e) {
     if (e.target.checked) {
      
-        // запысывае в локал тема черная
+        // запысываем в локал.хран тема черная
         localStorage.setItem('Theme', JSON.stringify(Theme.DARK));
         const getItemTheme = localStorage.getItem('Theme')
         console.log(getItemTheme);
